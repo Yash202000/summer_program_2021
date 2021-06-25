@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="viewport">
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <header>
+        <a href="#">My App</a>
+      </header>
+      <ul class="nav">
+        <li>
+          <a href="#">
+            <div class="runalert" onclick="listcont();">
+            <i class="zmdi zmdi-view-dashboard"></i> List Active container
+          </div>
+          </a>
+        </li>
+        <li>
+          
+          <a href="#">
+            <div id="listallcont">
+            <i class="zmdi zmdi-link"></i> List all container
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div id="launchcont">
+            <i class="zmdi zmdi-widgets"></i> Launch container
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div id="deletecont">
+            <i class="zmdi zmdi-calendar"></i> Delete container
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div id="networkls">
+            <i class="zmdi zmdi-info-outline"></i> docker network ls
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div id="help">
+            <i class="zmdi zmdi-settings"></i> docker help
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="zmdi zmdi-comment-more"></i> Status
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Content -->
+    <div id="content">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="#"><i class="zmdi zmdi-notifications text-danger active"></i>Yash Panchwatkar
+              </a>
+            </li>
+            <!--<li><a href="#">Test User</a></li>-->
+          </ul>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <h1>Docker GUI</h1>
+        <p>
+          Write Command below
+          <code>#command</code>.
+        <div class="cmdBox">
+          <input type="text" name="x" placeholder="Enter Command!" id="cmdid">
+          <button class="next" onclick="give_command_output();">RUN</button>
+        </div>
+        <br>
+
+        <!--createcontainerhide1-->
+        <div id="createcontainerhide1">
+          <span onclick="document.getElementById('createcontainerhide1').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Container Name</label>
+            <input type="text" class="form-control" id="Inputosname1" aria-describedby="emailHelp" placeholder="e.g os1" required>
+            <small id="emailHelp" class="form-text text-muted">It's good to give container Name</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Image Name</label>
+            <input type="text" class="form-control" id="Inputimage1" placeholder="e.g centos:latest" required>
+          </div>
+          <button type="submit" class="btn btn-primary" id="createContainer">Apply</button>
+        </form>
+      </div>
+      <!--create container hide closed-->
+
+      <!--deletecontainer-->
+      <div id="deletecontainer1">
+        <span onclick="document.getElementById('deletecontainer1').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Container Name</label>
+          <input type="text" class="form-control" id="deleteosname1" aria-describedby="emailHelp" placeholder="e.g os1" required>
+          <small id="emailHelp" class="form-text text-muted">Will delete container</small>
+        </div>
+        <button type="submit" class="btn btn-primary" id="deleteContainer">Apply</button>
+      </form>
+    </div>
+    <!--deletecontainer-->
+
+        <br>
+        <h3>Output:-</h3>
+        </p>
+        <pre>
+        <div class="container-fluid" id="output1" ></div>
+      </pre>
+      
+      </div>
+      
+    </div>
+    
+  </div>
+</body>
+<script>
+  //listcont
+  
+  //give output command function
+  function give_command_output(){
+    var inp = document.getElementById('cmdid').value;
+    //alert(inp);
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://65.2.5.240/cgi-bin/process.py?x="+inp);
+    xhr.send();
+    xhr.onload = function(){
+      var output = xhr.responseText;
+      document.getElementById("output1").innerHTML = output;
+    }
+  };
+
+  function listcont() {
+    document.getElementById('cmdid').value = "docker ps";
+    give_command_output();    
+  };
+
+
+  
+  //list all container
+  document.getElementById("listallcont").onclick = function() {
+    document.getElementById('cmdid').value = "docker ps -a";
+    give_command_output();
+  };
+
+  //launch container block;
+  document.getElementById('launchcont').onclick = function(){
+    document.getElementById('createcontainerhide1').style.display = 'block';
+  };
+  
+  document.getElementById("createContainer").onclick = function() {
+    var osname = document.getElementById("Inputosname1").value;
+    var imgname = document.getElementById("Inputimage1").value;
+    document.getElementById('cmdid').value = "docker run -dit --name "+ osname + " "+imgname;
+    give_command_output();
+    document.getElementById('createcontainerhide1').style.display = 'none';
+  };
+
+  //delte container block;
+  document.getElementById('deletecont').onclick = function(){
+    document.getElementById('deletecontainer1').style.display = 'block';
+  };
+  document.getElementById('deleteContainer').onclick = function(){
+    document.getElementById('cmdid').value = "docker rm -f "+document.getElementById('deleteosname1').value;
+    give_command_output();
+    document.getElementById('deletecontainer1').style.display = 'none';
+  };
+
+  
+  document.getElementById('networkls').onclick = function(){
+    document.getElementById('cmdid').value = "docker network ls";
+    give_command_output();
+  };
+
+  //help
+  document.getElementById('help').onclick = function(){
+    document.getElementById('cmdid').value = "docker";
+    give_command_output();
+  };  
+
+</script>
+
+</html>
