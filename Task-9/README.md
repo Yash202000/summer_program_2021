@@ -24,10 +24,6 @@ Note - There should be webUI based menu display so that user can get to know wha
 
 👉 Make a blog/article/video explaining this task step by step. 
  
-📍 Below are the hashtag you have to use while posting your task 
-
-#worldrecordholder #training #internship  #makingindiafutureready #summer #summertraining
-#python #javascript #docker #rightmentor #deepknowledge #linuxworld #vimaldaga #righteducation
 
 drive link: https://drive.google.com/file/d/104Rfo_BG-IwO4GuhlYv9dUC-_mJMr27v/view
 
