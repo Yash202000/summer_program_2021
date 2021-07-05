@@ -16,3 +16,5 @@ Object Recognition using CNN model
 
 ⚠️ Note: This is a compulsory team task"
 
+
+Post Link: https://www.linkedin.com/posts/yash-panchwatkar_worldrecordholder-training-internship-activity-6817879235449937920-aB3-
