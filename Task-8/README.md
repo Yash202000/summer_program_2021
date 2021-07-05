@@ -1,4 +1,4 @@
-# Task 08 👨🏻💻
+# Task 08 💻
 
 Team Task
 
