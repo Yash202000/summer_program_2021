@@ -106,7 +106,7 @@ def segment_characters(image) :
 # code for RTO api
 #infodekho
 def get_vehicle_info(plate_number):
-    r = requests.get("http://www.regcheck.org.uk/api/reg.asmx/CheckIndia?RegistrationNumber={0}&username=infodekho".format(str(plate_number)[:10]))
+    r = requests.get("http://www.regcheck.org.uk/api/reg.asmx/CheckIndia?RegistrationNumber={0}&username=username".format(str(plate_number)[:10]))
     data = xmltodict.parse(r.content)
     jdata = json.dumps(data)
     df = json.loads(jdata)
