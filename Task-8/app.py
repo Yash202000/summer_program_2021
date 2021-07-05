@@ -135,9 +135,9 @@ def success():
         if len(predicted_result) > 10:
             final_plate = predicted_result[:10]
             print(final_plate)
-            #o1=get_vehicle_info(final_plate)
+            o1=get_vehicle_info(final_plate)
 
-        return render_template("index.html", output=final_plate)
+        return render_template("index.html", output=o1)
 
 @app.route("/output",methods=['GET','POST'])
 def output():
