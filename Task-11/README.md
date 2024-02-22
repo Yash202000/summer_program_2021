@@ -1,4 +1,4 @@
-# visitcity
+# TerminalX
 
 A new Flutter project.
 
